@@ -3,6 +3,7 @@ package com.laurencewelch;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -12,6 +13,8 @@ import java.util.logging.Logger;
 public class License {
 
     private final static Logger logger = Logger.getLogger(License.class.getName());
+
+    private HashMap<String, String> fields = null;
     private String name = null; // name of License
     private List<String> text = null; //content of License
     private String location = null;
@@ -24,6 +27,18 @@ public class License {
     public License(String name, List<String> text) {
         this.name = name;
         this.text = text;
+    }
+
+    public License(String name, String[] text, HashMap<String, String> fields) {
+        this.name = name;
+        this.text = new ArrayList<String>(Arrays.asList(text));
+        this.fields = fields;
+    }
+
+    public License(String name, List<String> text, HashMap<String, String> fields) {
+        this.name = name;
+        this.text = text;
+        this.fields = fields;
     }
 
     /*
@@ -87,5 +102,12 @@ public class License {
         return text;
     }
 
+    public HashMap<String, String> getFields() {
+        return fields;
+    }
+
+    public void setField(String key, String value) {
+        fields.put(key, value);
+    }
 
 }

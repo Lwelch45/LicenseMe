@@ -21,6 +21,9 @@ public class LineFormatter implements Iterator<String> {
     @Override
     public String next() {
         if (hasNext()) {
+            if (lineIndex++ == 1) {
+                return " ";
+            }
             if ((tokens.get(tokenIndex).getLength() + lineIndex) <= lineLength) {
                 Tokenizer.Token tmp = tokens.get(tokenIndex);
                 lineIndex += tmp.getLength();
@@ -30,7 +33,8 @@ public class LineFormatter implements Iterator<String> {
                     return tmp.getWord() + " ";
                 }
                 //another word cant fit
-                return tmp.getWord();
+                lineIndex = 0;
+                return tmp.getWord() + "\n";
             }
         }
         throw new NoSuchElementException("There are no elements left to iterate over");
