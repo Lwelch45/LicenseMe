@@ -56,7 +56,7 @@ public class License {
     /*
         This method returns the license content.
         If the license was not previously loaded it is read in from a file.
-     */
+    */
     public List<String> getText() {
         if (text == null) {//load from file
             try {
@@ -87,9 +87,5 @@ public class License {
         return text;
     }
 
-    private class WordOccurance {
-        public WordOccurance(String sentence) {
 
-        }
-    }
 }
